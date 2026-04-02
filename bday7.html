@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>For Twallboyy 💙</title>
+
+<style>
+body{
+margin:0;
+font-family:sans-serif;
+background:linear-gradient(135deg,#dbeafe,#93c5fd);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+}
+
+.container{
+backdrop-filter:blur(15px);
+background:rgba(255,255,255,0.25);
+padding:40px 20px 30px;
+border-radius:25px;
+text-align:center;
+width:90%;
+max-width:400px;
+}
+
+#intro{
+line-height:1.6;
+font-size:18px;
+}
+
+.glow{
+color:#ff69b4;
+animation:glow 1.5s infinite alternate;
+}
+@keyframes glow{
+from{text-shadow:0 0 5px #ff69b4;}
+to{text-shadow:0 0 20px #ff69b4;}
+}
+
+.tap{
+margin:15px 0;
+font-weight:bold;
+}
+
+.gift{
+width:120px;
+height:120px;
+background:#2563eb;
+margin:40px auto;
+border-radius:12px;
+position:relative;
+cursor:pointer;
+}
+
+.lid{
+width:120px;
+height:35px;
+background:#1e40af;
+position:absolute;
+top:-35px;
+transition:0.6s;
+}
+
+.open .lid{
+transform:translateY(-100px) rotate(-20deg);
+}
+
+.big{
+display:none;
+font-size:45px;
+color:#0b3d91;
+animation:pop 0.6s forwards;
+}
+@keyframes pop{
+from{transform:scale(0);opacity:0;}
+to{transform:scale(1);opacity:1;}
+}
+
+.typing{
+white-space:pre-line;
+margin-top:15px;
+}
+
+/* player */
+.player{
+display:none;
+margin-top:15px;
+border-radius:15px;
+overflow:hidden;
+opacity:0;
+transition:0.6s;
+}
+.player.show{
+display:block;
+opacity:1;
+}
+.player iframe{
+width:100%;
+height:180px;
+border:0;
+}
+
+/* particles */
+.confetti,.balloon,.heart{
+position:absolute;
+}
+
+.confetti{
+width:6px;height:6px;
+animation:fall linear infinite;
+}
+@keyframes fall{
+from{top:-10px;}
+to{top:110vh;}
+}
+
+.balloon{
+width:30px;height:40px;
+border-radius:50%;
+bottom:-60px;
+animation:floatUp linear infinite;
+}
+@keyframes floatUp{
+from{bottom:-60px;}
+to{bottom:110vh;}
+}
+
+.heart{
+font-size:20px;
+animation:heart linear infinite;
+}
+@keyframes heart{
+from{bottom:-20px;}
+to{bottom:110vh;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div id="intro">
+To <span class="glow">Twallboyy</span>💙<br>
+my fav ragebaiter😭<br>
+From <span class="glow">jaanuu</span>?!💌
+</div>
+
+<div class="tap">Tap the gift box love</div>
+
+<div class="gift" onclick="openGift()" id="gift">
+<div class="lid"></div>
+</div>
+
+<div id="sixteen" class="big">16!! 🎉</div>
+
+<div id="final" class="typing"></div>
+
+<div id="player" class="player">
+<iframe id="yt"
+allow="autoplay; encrypted-media"
+allowfullscreen>
+</iframe>
+</div>
+
+</div>
+
+<script>
+
+function openGift(){
+
+document.getElementById("gift").classList.add("open");
+
+/* START MUSIC IMMEDIATELY (important) */
+let yt=document.getElementById("yt");
+yt.src="https://www.youtube.com/embed/mGUjVbsYG6E?autoplay=1&start=137&rel=0&modestbranding=1";
+document.getElementById("player").classList.add("show");
+
+/* show 16 */
+setTimeout(()=>{
+document.getElementById("sixteen").style.display="block";
+},500);
+
+/* confetti + balloons */
+createConfetti();
+createBalloons();
+
+/* fade */
+setTimeout(()=>{
+fadeConfetti();
+stopBalloons();
+},4000);
+
+/* hearts */
+setTimeout(()=>{
+createHearts();
+},4500);
+
+/* message */
+setTimeout(typeFinal,4800);
+}
+
+let text=`HAPPYY BIRTHDAYY BABEE😭ILYSSMM
+Hopee you’ll love your gifts😘
+Not finished yet😈
+Go open snapchat noww<3`;
+
+function typeFinal(){
+let i=0;
+function type(){
+if(i<text.length){
+document.getElementById("final").innerHTML+=text[i];
+i++;
+setTimeout(type,35);
+}
+}
+type();
+}
+
+/* particles */
+let confetti=[];
+function createConfetti(){
+for(let i=0;i<80;i++){
+let c=document.createElement("div");
+c.className="confetti";
+c.style.left=Math.random()*100+"vw";
+c.style.background="hsl("+Math.random()*360+",100%,50%)";
+c.style.animationDuration=(Math.random()*2+2)+"s";
+document.body.appendChild(c);
+confetti.push(c);
+}
+}
+function fadeConfetti(){
+confetti.forEach(c=>{
+c.style.opacity="0";
+setTimeout(()=>c.remove(),1000);
+});
+}
+
+let balloons=[];
+function createBalloons(){
+for(let i=0;i<15;i++){
+let b=document.createElement("div");
+b.className="balloon";
+b.style.left=Math.random()*100+"vw";
+b.style.background="hsl("+Math.random()*360+",100%,60%)";
+b.style.animationDuration=(Math.random()*3+4)+"s";
+document.body.appendChild(b);
+balloons.push(b);
+}
+}
+function stopBalloons(){
+balloons.forEach(b=>b.remove());
+}
+
+function createHearts(){
+for(let i=0;i<80;i++){
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"vw";
+h.style.animationDuration=(Math.random()*3+3)+"s";
+document.body.appendChild(h);
+}
+}
+
+</script>
+
+</body>
+</html>
